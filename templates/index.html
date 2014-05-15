@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<!--
+  index.html
+
+  Author:   Hiromasa Ihara (miettal)
+  URL:      http://miettal.com
+  License:  MIT License
+  Created:  2014-05-15
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>picam2iosocket</title>
+</head>
+<body>
+<img id="cam">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="http:////cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+<script>
+$(function(){
+  var socket = io.connect('http://'+document.domain+':'+location.port);
+
+  socket.on('jpeg', function(message){
+    var src = "data:image/jpeg;base64," + message;
+    $("#cam").attr('src', src);
+  });
+
+});
+</script>
+</body>
+</html>
